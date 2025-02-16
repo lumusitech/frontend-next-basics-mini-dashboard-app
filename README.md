@@ -28,6 +28,7 @@ export default nextConfig;
 ```
 
 Then, use the Image component, making sure to include all required props.
+Note: If the image is `above the fold` (visible without scrolling), use the `priority` prop to prefetch it.
 
 ```html
 <image
@@ -36,6 +37,7 @@ Then, use the Image component, making sure to include all required props.
   alt="user avatar"
   width="{50}"
   height="{50}"
+  priority
 />
 ```
 
