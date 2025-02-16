@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mini Dashboard app
 
-## Getting Started
+## Config Eslint and Prettier with Google code styles - Use in all projects
 
-First, run the development server:
+1. Install dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   ```bash
+   pnpm i -D eslint-config-google eslint-plugin-prettier prettier eslint-config-prettier
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. ESLint config: `eslint.config.mjs`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```typescript
+   import { FlatCompat } from '@eslint/eslintrc';
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   import { dirname } from 'path';
+   import { fileURLToPath } from 'url';
 
-## Learn More
+   const __filename = fileURLToPath(import.meta.url);
+   const__dirname = dirname(__filename);
 
-To learn more about Next.js, take a look at the following resources:
+   const compat = new FlatCompat({
+     baseDirectory: __dirname,
+   });
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   const eslintConfig = [
+     ...compat.extends(
+       'next/core-web-vitals',
+       'next/typescript',
+       'google', // Google code styles
+       'plugin:prettier/recommended' // recommended prettier
+     ),
+     {
+       rules: {
+         // ESLint custom rules here (if needed)
+       },
+     },
+   ];
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   export default eslintConfig;
+   ```
 
-## Deploy on Vercel
+3. Prettier config `.prettierrc.json`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```json
+   {
+     "semi": true,
+     "trailingComma": "es5",
+     "tabWidth": 2,
+     "singleQuote": true,
+     "printWidth": 80,
+     "bracketSpacing": true
+   }
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Add `.prettierignore` (optional)
+
+   ```txt
+    node_modules
+    .next
+    .vscode
+    dist
+   ```
+
+5. Vs Code integration - insert into vscode `settings.json`
+
+   ```json
+   "editor.defaultFormatter": "esbenp.prettier-vscode",
+   "editor.formatOnSave": true
+   ```
+
+6. Add Scripts to `package.json`
+
+   ```json
+   "scripts": {
+     "format": "prettier --write .",
+     "lint": "next lint",
+     "lint:fix": "next lint --fix"
+   }
+   ```
