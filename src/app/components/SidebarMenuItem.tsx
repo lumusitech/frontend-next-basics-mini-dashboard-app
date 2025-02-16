@@ -1,3 +1,7 @@
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { JSX } from 'react';
 
 interface Props {
@@ -8,10 +12,12 @@ interface Props {
 }
 
 export const SidebarMenuItem = ({ title, subtitle, path, icon }: Props) => {
+  const currentPath = usePathname();
+
   return (
-    <a
+    <Link
       href={path}
-      className="w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 bg-blue-800 hover:bg-white/5 transition ease-linear duration-150"
+      className={`${currentPath === path && 'bg-blue-600'} w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3  hover:bg-white/5 transition ease-linear duration-150`}
     >
       <div>{icon}</div>
       <div className="flex flex-col">
@@ -20,6 +26,6 @@ export const SidebarMenuItem = ({ title, subtitle, path, icon }: Props) => {
           {subtitle}
         </span>
       </div>
-    </a>
+    </Link>
   );
 };
