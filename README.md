@@ -1,11 +1,17 @@
 # Mini Dashboard app
 
+In this project, we explore the differences between server-side and client-side code.
+
+## Image management
+
+We use Next image management for performance optimization. Learn more [here](https://nextjs.org/docs/app/api-reference/components/image)
+
 ## Config Eslint and Prettier with Google code styles - Use in all projects
 
 1. Install dependencies
 
    ```bash
-   pnpm i -D eslint-config-google eslint-plugin-prettier prettier eslint-config-prettier
+   npm i -D eslint-config-google eslint-plugin-prettier prettier eslint-config-prettier
    ```
 
 2. ESLint config: `eslint.config.mjs`
