@@ -39,6 +39,18 @@ Then, use the Image component, making sure to include all required props.
 />
 ```
 
+## UI
+
+### Icons
+
+In this projects, we use React Icons. Learn more [here](https://react-icons.github.io/react-icons/)
+
+Intallation:
+
+```bash
+npm install react-icons --save
+```
+
 ## Config Eslint and Prettier with Google code styles - Use in all projects
 
 1. Install dependencies
