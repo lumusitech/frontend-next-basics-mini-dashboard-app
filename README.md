@@ -53,6 +53,14 @@ Intallation:
 npm install react-icons --save
 ```
 
+### Components from [TW components](https://www.creative-tim.com/twcomponents)
+
+- #### [Sidebar component](https://www.creative-tim.com/twcomponents/component/dashboard-navigation)
+
+- #### [Card component](https://www.creative-tim.com/twcomponents/component/user-card-7)
+
+- #### [Error page component](https://www.creative-tim.com/twcomponents/component/tailwind-css-500-server-error-illustration)
+
 ## Config Eslint and Prettier with Google code styles - Use in all projects
 
 1. Install dependencies
