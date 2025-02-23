@@ -42,10 +42,11 @@ export default async function PokemonPage({ params }: Props) {
           <div className="flex flex-col justify-center items-center">
             <Image
               src={pokemon.sprites.other?.dream_world.front_default ?? ''}
-              width={150}
-              height={150}
+              width={0}
+              height={0}
               alt={`Imagen del pokemon ${pokemon.name}`}
               className="mb-5"
+              style={{ width: '150px', height: '150px' }}
             />
 
             <div className="flex flex-wrap">
