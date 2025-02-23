@@ -41,6 +41,10 @@ Note: If the image is `above the fold` (visible without scrolling), use the `pri
 />
 ```
 
+## Code Snippets
+
+Remember useful code snippets, such as `prc` for page components, `mr` for metadata exports, `rafc` for React functional components, etc.
+
 ## UI
 
 ### Icons
