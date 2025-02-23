@@ -1,8 +1,7 @@
-import { PokemonsResponse, SimplePokemon } from '@/app/pokemons';
-import Image from 'next/image';
+import { PokemonsGrid, PokemonsResponse, SimplePokemon } from '@/pokemons';
 
 const getPokemons = async (
-  limit = 100,
+  limit = 150,
   offset = 0
 ): Promise<SimplePokemon[]> => {
   const data: PokemonsResponse = await fetch(
@@ -13,6 +12,10 @@ const getPokemons = async (
     id: pokemon.url.split('/').at(-2)!,
     name: pokemon.name,
   }));
+
+  // throw new Error('This is a fake error to test error page');
+  // throw notFound();
+
   return pokemons;
 };
 
@@ -24,18 +27,8 @@ export default async function PokemonsPage() {
       <span className="text-5xl my-2">
         Pokemons list <small>Static</small>
       </span>
-      <div className="flex flex-wrap gap-10 items-center justify-center">
-        {pokemons.map((pokemon) => (
-          <Image
-            key={pokemon.id}
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
-            alt={pokemon.name}
-            width={0}
-            height={0}
-            style={{ width: 'auto', height: '100px' }}
-          />
-        ))}
-      </div>
+
+      <PokemonsGrid pokemons={pokemons} />
     </div>
   );
 }
