@@ -61,6 +61,34 @@ npm install react-icons --save
 
 - #### [Error page component](https://www.creative-tim.com/twcomponents/component/tailwind-css-500-server-error-illustration)
 
+### Note: Tailwind CSS Configuration
+
+Ensure that the paths to all files using Tailwind styles are included in the tailwind.config.ts file. In this project, the pokemons and shopping-cart folders have been added.
+
+```typescript
+import type { Config } from 'tailwindcss';
+
+export default {
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    // pokemons and shopping-cart folders with tailwind styles
+    './src/pokemons/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/shopping-cart/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+      },
+    },
+  },
+  plugins: [],
+} satisfies Config;
+```
+
 ## Config Eslint and Prettier with Google code styles - Use in all projects
 
 1. Install dependencies
