@@ -70,6 +70,8 @@ npm install react-icons --save
 
 - #### [Pokemon page](https://www.creative-tim.com/twcomponents/component/profile-information-card-horizon-ui-tailwind)
 
+- #### [404 page](https://www.creative-tim.com/twcomponents/component/404-page-not-found)
+
 - #### [Error page component](https://www.creative-tim.com/twcomponents/component/tailwind-css-500-server-error-illustration)
 
 ### Note: Tailwind CSS Configuration
