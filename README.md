@@ -104,7 +104,7 @@ export default {
 
 ## Redux Toolkit
 
-Check docs about Redux Toolkit [here](https://redux-toolkit.js.org/tutorials/quick-start)
+For more information, see the Redux Toolkit documentation: [https://redux-toolkit.js.org/tutorials/quick-start](https://redux-toolkit.js.org/tutorials/quick-start)
 
 - Installation
 
@@ -112,9 +112,57 @@ Check docs about Redux Toolkit [here](https://redux-toolkit.js.org/tutorials/qui
   npm install @reduxjs/toolkit react-redux
   ```
 
-- Considerations Regarding Redux Provider Usage in the Main Layout
-  The Redux Provider component cannot be directly utilized within the main layout (src/app/layout.tsx) due to its server-side rendering context, while the application's global state must be managed on the client-side. Furthermore, the 'use client' directive cannot be applied within this file, as it would lead to errors during the Next.js build process.
-  Consequently, the optimal solution involves creating an auxiliary HOC component that incorporates the 'use client' directive and the Redux Provider component. This auxiliary component can be found in src/store/Provider.tsx.
+- Store creation (`src/store/index.ts`)
+
+  ```typescript
+  import { configureStore } from '@reduxjs/toolkit';
+
+  import { useDispatch, useSelector } from 'react-redux';
+  import counterReducer from './counter/counterSlice';
+
+  export const store = configureStore({
+    reducer: { counterReducer },
+  });
+
+  // Infer the `RootState` and `AppDispatch` types from the store itself
+  export type RootState = ReturnType<typeof store.getState>;
+  // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+  export type AppDispatch = typeof store.dispatch;
+
+  // Use throughout your app instead of plain `useDispatch` and `useSelector`
+  export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
+  export const useAppSelector = useSelector.withTypes<RootState>();
+  ```
+
+- Counter Slice (`src/store/counter/CounterSlice.ts`)
+
+  ```typescript
+  import { createSlice } from '@reduxjs/toolkit';
+
+  interface CounterState {
+    count: number;
+  }
+
+  const initialState: CounterState = {
+    count: 5,
+  };
+
+  const counterSlice = createSlice({
+    name: 'counter',
+    initialState,
+    reducers: {},
+  });
+
+  export const {} = counterSlice.actions;
+
+  export default counterSlice.reducer;
+  ```
+
+- Redux Provider Setup (`src/store/Provider.tsx`)
+
+  **Note:** Considerations Regarding Redux Provider Usage in the Main Layout
+  The Redux Provider component cannot be directly utilized within the main layout (`src/app/layout.tsx`) due to its server-side rendering context, while the application's global state must be managed on the client-side. Furthermore, the 'use client' directive cannot be applied within this file, as it would lead to errors during the Next.js build process.
+  Consequently, the optimal solution involves creating an auxiliary HOC component that incorporates the 'use client' directive and the Redux Provider component. This auxiliary component can be found in `src/store/Provider.tsx`.
 
   ```typescript
   'use client';
@@ -132,7 +180,7 @@ Check docs about Redux Toolkit [here](https://redux-toolkit.js.org/tutorials/qui
 
   ```
 
-  Then, you can use it in the main layout this way
+- Usage in Main Layout (`src/app/layout.tsx`)
 
   ```typescript
   import { Providers } from '@/store/Providers';
