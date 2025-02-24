@@ -104,12 +104,12 @@ export default {
 
 ## Redux Toolkit
 
-Check docs about Redux Toolkit [here](https://redux-toolkit.js.org/introduction/getting-started)
+Check docs about Redux Toolkit [here](https://redux-toolkit.js.org/tutorials/quick-start)
 
 - Installation
 
   ```bash
-  npm install @reduxjs/toolkit
+  npm install @reduxjs/toolkit react-redux
   ```
 
 ## Config Eslint and Prettier with Google code styles - Use in all projects
