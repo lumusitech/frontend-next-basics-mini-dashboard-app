@@ -112,7 +112,7 @@ For more information, see the Redux Toolkit documentation: [https://redux-toolki
   npm install @reduxjs/toolkit react-redux
   ```
 
-- Store creation (`src/store/index.ts`)
+- Store creation (`src/store/index.ts`). Snippet `rxstore`.
 
   ```typescript
   import { configureStore } from '@reduxjs/toolkit';
@@ -134,7 +134,7 @@ For more information, see the Redux Toolkit documentation: [https://redux-toolki
   export const useAppSelector = useSelector.withTypes<RootState>();
   ```
 
-- Counter Slice (`src/store/counter/CounterSlice.ts`)
+- Counter Slice (`src/store/counter/CounterSlice.ts`). Snippet `rxslice`.
 
   ```typescript
   import { createSlice } from '@reduxjs/toolkit';
@@ -158,7 +158,7 @@ For more information, see the Redux Toolkit documentation: [https://redux-toolki
   export default counterSlice.reducer;
   ```
 
-- Redux Provider Setup (`src/store/Provider.tsx`)
+- Redux Provider Setup (`src/store/Provider.tsx`). Snippet `rxprovider-custom`.
 
   **Note:** Considerations Regarding Redux Provider Usage in the Main Layout
   The Redux Provider component cannot be directly utilized within the main layout (`src/app/layout.tsx`) due to its server-side rendering context, while the application's global state must be managed on the client-side. Furthermore, the 'use client' directive cannot be applied within this file, as it would lead to errors during the Next.js build process.
@@ -220,7 +220,9 @@ For more information, see the Redux Toolkit documentation: [https://redux-toolki
   }
   ```
 
-## Config Eslint and Prettier with Google code styles - Use in all projects
+## Config Eslint and Prettier with Google code styles - Use in all NextJs projects
+
+This `md-config-eslint-prettier-next` snippet can be used in other projects to quickly document to the project's developers how Prettier and ESLint were configured.
 
 1. Install dependencies
 
