@@ -137,7 +137,7 @@ For more information, see the Redux Toolkit documentation: [https://redux-toolki
 - Counter Slice (`src/store/counter/CounterSlice.ts`). Snippet `rx-slice-counter-example`.
 
   ```typescript
-  import { createSlice } from '@reduxjs/toolkit';
+  import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
   interface CounterState {
     count: number;
@@ -156,12 +156,20 @@ For more information, see the Redux Toolkit documentation: [https://redux-toolki
       },
 
       substractOne(state) {
+        if (state.count === 0) return;
+
         state.count--;
+      },
+      resetCount(state, action: PayloadAction<number>) {
+        if (state.count === action.payload) return;
+        if (action.payload < 0) return;
+
+        state.count = action.payload;
       },
     },
   });
 
-  export const {} = counterSlice.actions;
+  export const { addOne, substractOne, resetCount } = counterSlice.actions;
 
   export default counterSlice.reducer;
   ```
