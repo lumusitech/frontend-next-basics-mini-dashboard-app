@@ -238,7 +238,7 @@ For more information, see the Redux Toolkit documentation: [https://redux-toolki
   }
   ```
 
-- Use within a client side component like in this project, we use it within `src/shopping-cart/components/CartCounter.tsx`
+- After setting up Redux as shown above, you can use it in client-side components like `src/shopping-cart/components/CartCounter.tsx`.
 
   ```typescript
   'use client';
@@ -251,7 +251,6 @@ For more information, see the Redux Toolkit documentation: [https://redux-toolki
   }
 
   export const CartCounter = ({ value = 0 }: Props) => {
-    // const [count, setCount] = useState(value);
     const count = useAppSelector((state) => state.counter.count);
     const dispatch = useAppDispatch();
 
