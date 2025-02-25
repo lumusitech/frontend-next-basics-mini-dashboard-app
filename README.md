@@ -112,7 +112,7 @@ For more information, see the Redux Toolkit documentation: [https://redux-toolki
   npm install @reduxjs/toolkit react-redux
   ```
 
-- Store creation (`src/store/index.ts`). Snippet `rxstore`.
+- Store creation (`src/store/index.ts`). Snippet `rx-store`.
 
   ```typescript
   import { configureStore } from '@reduxjs/toolkit';
@@ -134,7 +134,7 @@ For more information, see the Redux Toolkit documentation: [https://redux-toolki
   export const useAppSelector = useSelector.withTypes<RootState>();
   ```
 
-- Counter Slice (`src/store/counter/CounterSlice.ts`). Snippet `rxslice`.
+- Counter Slice (`src/store/counter/CounterSlice.ts`). Snippet `rx-slice-counter-example`.
 
   ```typescript
   import { createSlice } from '@reduxjs/toolkit';
@@ -150,7 +150,15 @@ For more information, see the Redux Toolkit documentation: [https://redux-toolki
   const counterSlice = createSlice({
     name: 'counter',
     initialState,
-    reducers: {},
+    reducers: {
+      addOne(state) {
+        state.count++;
+      },
+
+      substractOne(state) {
+        state.count--;
+      },
+    },
   });
 
   export const {} = counterSlice.actions;
@@ -158,7 +166,7 @@ For more information, see the Redux Toolkit documentation: [https://redux-toolki
   export default counterSlice.reducer;
   ```
 
-- Redux Provider Setup (`src/store/Provider.tsx`). Snippet `rxprovider-custom`.
+- Redux Provider Setup (`src/store/Provider.tsx`). Snippet `rx-provider-custom`.
 
   **Note:** Considerations Regarding Redux Provider Usage in the Main Layout
   The Redux Provider component cannot be directly utilized within the main layout (`src/app/layout.tsx`) due to its server-side rendering context, while the application's global state must be managed on the client-side. Furthermore, the 'use client' directive cannot be applied within this file, as it would lead to errors during the Next.js build process.
