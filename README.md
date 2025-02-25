@@ -238,6 +238,45 @@ For more information, see the Redux Toolkit documentation: [https://redux-toolki
   }
   ```
 
+- Use within a client side component like in this project, we use it within `src/shopping-cart/components/CartCounter.tsx`
+
+  ```typescript
+  'use client';
+
+  import { useAppDispatch, useAppSelector } from '@/store';
+  import { addOne, substractOne } from '@/store/counter/counterSlice';
+
+  interface Props {
+    value?: number;
+  }
+
+  export const CartCounter = ({ value = 0 }: Props) => {
+    // const [count, setCount] = useState(value);
+    const count = useAppSelector((state) => state.counter.count);
+    const dispatch = useAppDispatch();
+
+    return (
+      <>
+        <span className="text-9xl">{count}</span>
+        <div className="flex">
+          <button
+            className="flex items-center justify-center p-2 rounded-xl bg-gray-900 text-white hover:bg-gray-600 transition-all w-[100px] mr-2"
+            onClick={() => dispatch(substractOne())}
+          >
+            -1
+          </button>
+          <button
+            className="flex items-center justify-center p-2 rounded-xl bg-gray-900 text-white hover:bg-gray-600 transition-all w-[100px] mr-2"
+            onClick={() => dispatch(addOne())}
+          >
+            +1
+          </button>
+        </div>
+      </>
+    );
+  };
+  ```
+
 ## Config Eslint and Prettier with Google code styles - Use in all NextJs projects
 
 This `md-config-eslint-prettier-next` snippet can be used in other projects to quickly document to the project's developers how Prettier and ESLint were configured.
