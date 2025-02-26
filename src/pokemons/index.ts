@@ -1,3 +1,4 @@
+export { FavoritesGrid } from './components/FavoritesGrid';
 export { PokemonCard } from './components/PokemonCard';
 export { PokemonsGrid } from './components/PokemonsGrid';
 
