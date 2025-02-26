@@ -1,29 +1,26 @@
 'use client';
 
 import { useAppSelector } from '@/store';
-import { useState } from 'react';
+import { createSelector } from '@reduxjs/toolkit';
 import { IoHeartOutline } from 'react-icons/io5';
+import { SimplePokemon } from '../interfaces/simple-pokemon';
 import { PokemonsGrid } from './PokemonsGrid';
 
+// This step is very important for memoization and avoid warning for re render unnecessary
+const pokemonsSelector = (state: any) => state.pokemons.favorites;
+
+const buildFavoritesPokemons = createSelector(
+  [pokemonsSelector],
+  (pokemons: Record<string, SimplePokemon>) => Object.values(pokemons)
+);
+
 export const FavoritesGrid = () => {
-  const favoritesState = useAppSelector((state) =>
-    Object.values(state.pokemons)
-  );
-
-  // const favoritesState = useMemo(
-  //   () => () => {
-  //     useAppSelector((state) => Object.values(state.pokemons));
-  //   },
-  //   []
-  // );
-  const favoritesArray = Object.values(favoritesState);
-
-  const [favorites, setfavorites] = useState(favoritesArray);
+  const favoritePokemons = useAppSelector(buildFavoritesPokemons);
 
   return (
     <>
-      {favorites.length ? (
-        <PokemonsGrid pokemons={favorites} />
+      {favoritePokemons.length ? (
+        <PokemonsGrid pokemons={favoritePokemons} />
       ) : (
         <NoFavorites />
       )}
