@@ -104,9 +104,6 @@ export default {
 
 ## Redux Toolkit
 
-<!-- TODO: Creste a "How To" sync server and client -->
-<!-- TODO: Create a "How To" guide for building a Next.js API and initializing data from that API. -->
-
 For more information, see the Redux Toolkit documentation: [https://redux-toolkit.js.org/tutorials/quick-start](https://redux-toolkit.js.org/tutorials/quick-start)
 
 - Installation
